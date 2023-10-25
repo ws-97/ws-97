@@ -1,0 +1,29 @@
+/* pages/order/order.wxss
+
+.navbar{
+    z-index: 10;
+    width: 100%;
+      flex: none;
+      display: flex;
+      background: #fff;
+      position: fixed;
+      .item{
+        position: relative;
+        flex: auto;
+        text-align: center;
+        line-height: 80rpx;
+      }
+      .item.active{
+        color: #EB3855;
+      }
+      .item.active:after{
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 6rpx;
+        background: #EB3855;
+      }
+} */

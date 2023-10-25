@@ -1,0 +1,9 @@
+/* pages/thesaurus/detail/ThesaurusDetailPage.wxss */
+.list-title{
+    margin-top: 10rpx;
+}
+.tab_name {
+    margin-left: 20rpx ;
+    /* margin-right: 20fr ; */
+  font-family: PingFangSC-Regular;
+}

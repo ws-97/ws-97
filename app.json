@@ -1,13 +1,32 @@
 {
     "pages": [
-        "pages/index/index"
+        "pages/home/home",
+        "pages/demo/demo",
+        "pages/my/my",
+        "pages/radio/radio",
+        "pages/index/index",
+        "pages/thesaurus/ThesaurusDetailPage",
+        "pages/thesaurus/thesaurusReview/ThesaurusReviewPage"
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "Weixin",
-        "navigationBarTextStyle": "black"
+        "navigationBarTitleText": "小助手",
+        "navigationBarTextStyle": "white"
     },
-    "style": "v2",
-    "sitemapLocation": "sitemap.json"
+    "tabBar": {
+        "color": "#000",
+        "selectedColor": "#328eeb",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "selectedIconPath": "images/tabbar_home.png",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "iconPath": "images/tabbar_my.png",
+                "text": "我的"
+            }
+        ]
+    }
 }

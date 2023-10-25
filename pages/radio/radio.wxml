@@ -1,0 +1,13 @@
+<view class="title">3.表单组件radio的简单应用</view>
+<view class='demo-box'>
+<view class='title'>
+使用数组批量生成选项</view>
+<radio-group bindchange="radioChange">
+<view class='test' wx:for="{{radioItems}}" 
+wx:key="item{{index}}">
+<radio value ='{{item.value}}' checked='{{item.checked}}'/>{{item.name}}
+</view>
+</radio-group>
+</view>
+
+

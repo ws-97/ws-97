@@ -1,0 +1,9 @@
+<!--pages/order/order.wxml-->
+<view class="navbar">
+  <text class="item {{currentTab==index?'active':''}}" wx:for="{{navbar}}" data-tab_index="{{index}}" wx:key="unique" bindtap="changeNavBar">{{item}}</text>
+</view>
+<!-- 占位 -->
+<view style="height: 80rpx;"></view>
+<view>{{currentTab}}</view>
+
+

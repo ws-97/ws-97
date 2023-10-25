@@ -1,0 +1,12 @@
+<!--pages/thesaurus/thesaurusReview/ThesaurusReviewPage.wxml-->
+<text>pages/thesaurus/thesaurusReview/ThesaurusReviewPage.wxml</text>
+<view class="list" wx:for="{{list}}" >
+      <view >
+        <text class="list-title"   data-text="{{item.word}}">{{item.word}}</text>
+        <!-- <text class="list-date">{{item.date}} \n {{item.time}}</text> -->
+      </view>
+      <view class="list-content">{{item.phonetic}}</view>
+      <view class="list-content">{{item.mean}}</view>
+      <view class="list-content">{{item.eg}}</view>
+      <view class="list-content"></view>
+    </view>

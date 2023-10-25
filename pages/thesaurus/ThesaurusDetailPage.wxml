@@ -1,0 +1,19 @@
+<!--pages/thesaurus/detail/ThesaurusDetailPage.wxml-->
+<text>pages/thesaurus/detail/ThesaurusDetailPage.wxml</text>
+
+<text 
+class='tab_name'
+ wx:for="{{option}}" data-tab_index="{{index}}" 
+data-tab_name="{{item}}"
+
+  bindtap="changeNavBar">{{item}}</text>
+<view class="list" wx:for="{{list}}" >
+      <view >
+        <text class="list-title"  hidden="{{currentTab==2}}" data-text="{{item.word}}">{{item.word}}</text>
+        <!-- <text class="list-date">{{item.date}} \n {{item.time}}</text> -->
+      </view>
+      <view  hidden="{{currentTab!=0}}"  class="list-content">{{item.phonetic}}</view>
+      <view hidden="{{currentTab==1}}"  class="list-content">{{item.mean}}</view>
+      <view hidden="{{currentTab!=0}}" class="list-content">{{item.eg}}</view>
+      <!-- <view hidden="{{currentTab!=0}}" class="list-content"></view> -->
+    </view>

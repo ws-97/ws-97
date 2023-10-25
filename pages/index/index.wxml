@@ -1,4 +1,10 @@
 <!--index.wxml-->
 <view class="container">
-  Weixin
+  Weixin ws
+  <radio-group>
+  <radio value="watermelon" checked="true"/>西瓜
+  <radio value="orange" disabled />橙子
+  <radio value="strawberry"/>草莓
+  <radio value="pineapple" />菠萝
+  </radio-group>
 </view>

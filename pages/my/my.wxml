@@ -1,0 +1,45 @@
+<!--pages/thesaurus/thesaurus.wxml-->
+<text>pages/thesaurus/thesaurus.wxml</text>
+
+<view>{{msg}}</view>
+
+
+<view wx:for="{{array}}">学生{{index}}:{{item}}</view>
+<button id="asdad" bindtap="getRecieveTime">可接受次数{{receiveTimes}}</button>
+
+<button id="asdad" bindtap="getAllThesaurus">按钮组件</button>
+<button id="asdad" bindtap="vibrateLong">震动组件</button>
+<button id="asdad" bindtap="subscribleMessage">订阅消息0</button>
+<button id="asdad" bindtap="getAccessToken">获取token1</button>
+<button id="asdad" bindtap="getOpenId">获取OPenID2</button>
+<button id="asdad" bindtap="sendMessage1">发送消息3</button>
+
+<view class="title"> 1.视图容器view的简单应用</view>
+<view class="demo-box">
+
+    <view class="title">(1) 不组织父容器的view_hover</view>
+    <view class="view_parent" hover-class="view_hover">
+        我是父容器<view>
+            <view class="view_son" hover-class="view_hover">
+                我是子容器view
+            </view>
+        </view>
+    </view>
+    <view class="demo-box">2.阻止父容器的view_hover</view>
+<view class='view_parent' hover-class="view_hover">
+我是父容器
+<view class="view_son" hover-class="view_hover" hover-stop-propagation="">
+    我是子容器view
+</view>
+</view>
+
+</view>
+
+
+
+
+<scroll-view scroll-y>
+<view>1</view>
+<view>2</view>
+<view>3</view>
+</scroll-view>

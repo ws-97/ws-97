@@ -1,0 +1,23 @@
+{
+    "pages": [       
+        "pages/thesaurus/hasCreateThesaurus/HasCreateThesaurusPage",
+
+       "pages/thesaurus/inprogress/InProgressThesaurus"
+
+   ],
+    "tabBar": {
+        "color": "#000",
+        "selectedColor": "#328eeb",
+        "position": "top",
+        "list": [{
+                "pagePath": "pages/thesaurus/hasCreateThesaurus/HasCreateThesaurusPage",
+                "text": "已创建"
+            },
+            {
+                "pagePath": "pages/thesaurus/inprogress/InProgressThesaurus",
+                "text": "进行中"
+            }
+        ]
+
+    }
+}

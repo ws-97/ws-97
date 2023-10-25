@@ -1,0 +1,22 @@
+/* pages/home/home.wxss */
+
+/* 手机号输入框 */
+.phone{
+    width: 450rpx;
+    height: 80rpx ;
+  }
+  /* 密码图标+输入框+小眼睛图标+下划线父容器view */
+  .pwd{
+    width:450rpx ;
+    height: 80rpx ;
+  }
+  /* .style_thesaurus_name{
+      margin-bottom: 110rpx;
+  } */
+   
+  .tab_name {
+      margin-left: 20rpx ;
+      /* margin-right: 20fr ; */
+    font-family: PingFangSC-Regular;
+  }
+ 
