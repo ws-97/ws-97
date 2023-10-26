@@ -13,7 +13,15 @@
   /* .style_thesaurus_name{
       margin-bottom: 110rpx;
   } */
-   
+   .thesaurus_name{
+      font-size: 30rpx; 
+      margin-top: 20rpx;
+      margin-bottom: 20rpx;
+   }
+   .thesaurus{
+    margin-left: 30rpx; 
+    margin-right: 30rpx;
+ }
   .tab_name {
       margin-left: 20rpx ;
       /* margin-right: 20fr ; */

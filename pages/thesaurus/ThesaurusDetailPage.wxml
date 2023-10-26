@@ -1,4 +1,5 @@
 <!--pages/thesaurus/detail/ThesaurusDetailPage.wxml-->
+<view class="table">
 <text>pages/thesaurus/detail/ThesaurusDetailPage.wxml</text>
 
 <text 
@@ -9,11 +10,14 @@ data-tab_name="{{item}}"
   bindtap="changeNavBar">{{item}}</text>
 <view class="list" wx:for="{{list}}" >
       <view >
-        <text class="list-title"  hidden="{{currentTab==2}}" data-text="{{item.word}}">{{item.word}}</text>
-        <!-- <text class="list-date">{{item.date}} \n {{item.time}}</text> -->
+        <text class="list-title"   hidden="{{currentTab==2}}" data-text="{{item.word}}">{{item.word}}</text>
+        <image data-word="{{item.word}}"   bind:tap="playAudio"  class="trumpet_style" src="../../images/icon_trumpet.png"></image>
       </view>
       <view  hidden="{{currentTab!=0}}"  class="list-content">{{item.phonetic}}</view>
       <view hidden="{{currentTab==1}}"  class="list-content">{{item.mean}}</view>
       <view hidden="{{currentTab!=0}}" class="list-content">{{item.eg}}</view>
       <!-- <view hidden="{{currentTab!=0}}" class="list-content"></view> -->
+      <view class="line"></view>
     </view>
+</view>
+

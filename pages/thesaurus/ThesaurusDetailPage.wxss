@@ -7,3 +7,18 @@
     /* margin-right: 20fr ; */
   font-family: PingFangSC-Regular;
 }
+.trumpet_style{
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 50rpx;
+}
+.table{
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    width:100%;overflow-x: hidden}
+.line{
+    margin-top: 10rpx;
+    width:100%;
+    height: 2rpx;
+    background:#aaa;
+}

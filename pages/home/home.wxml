@@ -8,11 +8,11 @@ data-tab_name="{{item}}"
 
   bindtap="changeNavBar">{{item}}</text>
 
-<view hidden="{{currentTab==0}}" class="list" wx:for="{{list}}">
-    <view>
-        <text class="style_thesaurus_name" bindtap="goThesaurusDetailPage" data-text="{{item.title}}">{{item.title}}</text>
+<view hidden="{{currentTab==0}}" class="list" wx:for="{{thesauruslist}}">
+    <view  class="thesaurus" bindtap="goThesaurusDetailPage">
+        <text class="thesaurus_name"  data-text="{{item.title}}">{{item.title}}</text>
 
-        <!-- <text class="list-date">{{item.date}} \n {{item.time}}</text> -->
+        <text class="thesaurus_name">  \t{{item.nextRemindTime}}</text>
     </view>
     <!-- <view class="list-content">{{item.content}}</view> -->
 </view>
@@ -20,11 +20,11 @@ data-tab_name="{{item}}"
     <!-- 手机号 -->
     <view class="phone">
         <image class="ph"></image>
-        <input bindinput="getThesaurusNameValue" placeholder="请输入词单名" />
+        <input bindinput="getThesaurusNameValue"  placeholder="{{createThesaurusName}}" />
     </view>
     <view class=pwd">
         <image class="ps"></image>
-        <input bindinput="getThesaurusCapacityValue" placeholder="请输入词单容量" />
+        <input bindinput="getThesaurusCapacityValue" placeholder="{{capacity}}" />
         <image class="eye"></image>
     </view>
     <button id="asdad" bindtap="createThesaurus">创建词单</button>

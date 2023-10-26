@@ -21,6 +21,9 @@ thesaurusName:""
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        wx.showLoading({
+          title: 'loading',
+        })
       var temp=   wx.getStorageSync('receiveTime')
       wx.setStorageSync('receivTime', temp--);
       console.log(temp)
@@ -47,7 +50,12 @@ thesaurusName:""
               that.setData({ //setData在此位置
                   list: temList, //这里把从后台获取到的数值赋给lists
               })
+              wx.hideLoading()
+
               // console.log(getApp().globalData.netServerAddrees + '/ep/queryAllCreateThesaurusServlet')
+          },
+          error:function(e){
+              wx.hideLoading()
           }
 
       })

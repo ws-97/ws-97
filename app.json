@@ -1,4 +1,6 @@
 {
+    "themeLocation":"theme.json",
+    "darkmode": true,
     "pages": [
         "pages/home/home",
         "pages/demo/demo",
@@ -9,24 +11,35 @@
         "pages/thesaurus/thesaurusReview/ThesaurusReviewPage"
     ],
     "window": {
-        "backgroundTextStyle": "light",
         "navigationBarTitleText": "小助手",
-        "navigationBarTextStyle": "white"
+        "navigationBarBackgroundColor": "@navBgColor",
+        "navigationBarTextStyle": "@navTxtStyle",
+        "backgroundColor": "@bgColor",
+        "backgroundTextStyle": "@bgTxtStyle",
+        "backgroundColorTop": "@bgColorTop",
+        "backgroundColorBottom": "@bgColorBottom"
     },
+
     "tabBar": {
-        "color": "#000",
+        "backgroundColor": "@tabBgColor",
         "selectedColor": "#328eeb",
         "list": [
             {
                 "pagePath": "pages/home/home",
-                "selectedIconPath": "images/tabbar_home.png",
+                "selectedIconPath": "images/tabbar_homed.png",
+                "iconPath": "images/tabbar_home.png",
                 "text": "首页"
             },
             {
                 "pagePath": "pages/my/my",
-                "iconPath": "images/tabbar_my.png",
+                "iconPath": "images/tabbar_mine.png",
+                "selectedIconPath": "images/tabbar_mined.png",
                 "text": "我的"
             }
         ]
     }
+
+
+ 
+
 }
