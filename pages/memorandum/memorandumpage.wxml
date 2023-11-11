@@ -1,3 +1,15 @@
+
+
+    <view class="phone">
+        <text >备忘录名字：</text>
+        <input  placeholder="{{memorandumName}}" />
+    </view>
+
+    <view class="phone">
+        <text >备忘录描述：</text>
+        <input placeholder="{{memorandumDescription}}" />
+    </view>
+
 <view class="img-view">
 	<view class="show" wx:for="{{ imgOne }}" wx:key="_id">
 		<image src="{{ item }}" mode="aspectFill" data-index="{{index}}" bindtap="previewImg"></image>

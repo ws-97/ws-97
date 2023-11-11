@@ -2,11 +2,11 @@
 <text>pages/thesaurus/thesaurusReview/ThesaurusReviewPage.wxml</text>
 <view class="list" wx:for="{{list}}" >
       <view >
-        <text class="list-title"   data-text="{{item.word}}">{{item.word}}</text>
+        <text class="list-title"  bind:tap="showAnswerAndRemove"  data-text="{{item.word}}">{{item.word}}</text>
         <!-- <text class="list-date">{{item.date}} \n {{item.time}}</text> -->
       </view>
-      <!-- <view class="list-content">{{item.phonetic}}</view>
-      <view class="list-content">{{item.mean}}</view>
-      <view class="list-content">{{item.eg}}</view>
-      <view class="list-content"></view> -->
+      <view  hidden="{{Boolean(Math.round(Math.random()))}}"  class="list-content">{{item.phonetic}}</view>
+      <view  hidden="{{!showAnswer.includes(item.word)}}" class="list-content">{{item.mean}}</view>
+      <view  hidden="{{!showAnswer.includes(item.word)}}" class="list-content">{{item.eg}}</view>
+      <view  hidden="{{!showAnswer.includes(item.word)}}" class="list-content"></view>
     </view>

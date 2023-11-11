@@ -1,14 +1,14 @@
 {
-    "themeLocation":"theme.json",
+    "themeLocation": "theme.json",
     "darkmode": true,
     "pages": [
         "pages/home/home",
         "pages/demo/demo",
         "pages/my/my",
-        "pages/radio/radio",
         "pages/index/index",
         "pages/thesaurus/ThesaurusDetailPage",
-        "pages/thesaurus/thesaurusReview/ThesaurusReviewPage"
+        "pages/thesaurus/thesaurusReview/ThesaurusReviewPage",
+        "pages/memorandum/memorandumpage"
     ],
     "window": {
         "navigationBarTitleText": "小助手",
@@ -19,7 +19,6 @@
         "backgroundColorTop": "@bgColorTop",
         "backgroundColorBottom": "@bgColorBottom"
     },
-
     "tabBar": {
         "backgroundColor": "@tabBgColor",
         "selectedColor": "#328eeb",
@@ -38,8 +37,4 @@
             }
         ]
     }
-
-
- 
-
 }

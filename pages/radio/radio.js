@@ -1,80 +1,148 @@
 Page({
+	data: {
+		imgOneSwitch: true,
+		imgOne: [],
+		MAXCOUNTIMAGE: 9,
+	},
 
-    myPageData:"123",
-    myPageData1:"1234",
-    myPageData:"1234555",
+	onLoad: function (options) {
+	},
 
+	// 保存到 存储 & 数据库
+	onSave: function () {
+	
+		if (this.data.imgOne.length == 0) {
+			wx.showToast({
+				title: '请添加图片',
+				icon: 'none'
+			})
+			return
+		}
 
-    //页面加载
-    onLoad:function(options){
-        console.log("onLoad page")
-    },
+		console.log('通过 ---空--- 校验')
 
-onReady:function(){
+		wx.showToast({
+			title: '上传图片中',
+			icon: 'loading',
+			duration: 30000,
+			mask: true
+		})
 
-    console.log("监听页面初次渲染完成")
-},
-//页面
-onShow:function(){
-    console.log("onshow page  页面显示")
-},
+		this.OnUpImg()
 
-onHides:function(){
-    console.log("页面隐藏")
-},
+	},
 
-onUnload:function(){
-    console.log("页面卸载了")
-},
+	OnUpImg: function () {
+		let promiseArr = []
+		let fileIds = []     // 将图片的fileId存放到一个数组中
+		let imgLength = this.data.imgOne.length;
 
+		// 图片上传
+		for (let i = 0; i < imgLength; i++) {
+			let p = new Promise((resolve, reject) => {
+				let item = this.data.imgOne[i]
+				let suffix = /\.\w+$/.exec(item)[0]
+				
+				wx.cloud.uploadFile({    
+					cloudPath: 'testdir/' + Date.now() + '-' + Math.random() * 1000000 + suffix, 
+					filePath: item,
+					success: (res) => {
+						console.log(res);
+						// console.log(res.fileID)
+						fileIds = fileIds.concat(res.fileID)       // 拼接
+						resolve()
+					},
+					fail: (err) => {
+						console.error(err)
+						reject()
+					}
+				})
+			})
+			promiseArr.push(p)
+		}
 
-onPullDownRefresh:function(){
-    console.log("用户下拉刷新了")
-},
+		Promise.all(promiseArr)
+			.then((res) => {
+				this.addtoDB(fileIds)
+			})
+			.catch((err) => {
+				console.error(err)       // 上传图片失败
 
-onReachBotton:function(){
+				wx.showToast({
+					title: '上传失败 请再次点击发布',
+					icon: 'none',
+					duration: 3000
+				})
+			})
 
-    console.log("上拉加载更多了")
-},
+	},
 
-onShareAppMessage:function(){
-console.log("点击了右上角的分享")
-},
+	addtoDB: function (fileIds) {
+		wx.showToast({
+			title: '发布中...',
+		})
+	},
 
+	// 选择图片 + 回显 
+	onChooseOne: function () {
+		let that = this
+		wx.chooseImage({
+			count: this.data.MAXCOUNTIMAGE - this.data.imgOne.length,
+			// sizeType: ['compressed','original'],
+			sourceType: ['album', 'camera'],
+			sizeType: ['compressed'],
+			// sourceType: ['album'],
+			success(res) {
+				console.log(res)
 
-    /**
-     * 页面的初始化数据
-     */
-    data: {
-        radioItems: [{
-            name: '苹果',
-            value: 'apple'
-        },
-        {
-            name: '橙子',
-            value: 'orangle',
-            checked: 'true'
-        },
-        {
-            name: '梨子',
-            value: 'pear'
-        },
-        {
-            name: '草莓',
-            value: 'strawberry'
-        },
-        {
-            name: '香蕉',
-            value: 'banana'
-        },
-        {
-            name: '葡萄',
-            value: 'grape'
-        },
+				let tempArr = that.data.imgOne.concat(res.tempFilePaths)
 
-        ]
-    },
-    radioChange: function (e) {
-        console.log('radio发生变化，被选中的值是：' + e.detail.value)
-    }
+				that.setData({
+					'imgOne': tempArr
+				})
+
+				if (that.data.imgOne.length >= that.data.MAXCOUNTIMAGE) {
+					that.setData({
+						imgOneSwitch: false
+					})
+				}
+			}
+		})
+	},
+
+	// 删除图片功能
+	reBackImg: function (e) {
+		let dataset = e.currentTarget.dataset
+		let index = dataset.index
+		console.log(index)
+
+		let arr = this.data.imgOne
+		arr.splice(index, 1)
+
+		if (arr.length < this.data.MAXCOUNTIMAGE && this.data.imgOneSwitch === false) {
+			this.setData({
+				imgOneSwitch: true
+			})
+		}
+
+		this.setData({
+			imgOne: arr
+		})
+	},
+
+	// 预览图片
+	previewImg: function (e) {
+		console.log('放大图片')
+
+		let index = e.currentTarget.dataset.index
+		let item = this.data.imgOne[index]
+
+		console.log(item)
+
+		wx.previewImage({
+			current: item, // 当前显示图片的http链接
+			urls: this.data.imgOne // 需要预览的图片http链接列表
+		})
+	},
+
 })

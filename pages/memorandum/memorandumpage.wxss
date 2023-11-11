@@ -1,33 +1,5 @@
-/* pages/home/home.wxss */
-
-/* 手机号输入框 */
-.phone{
-    height: 80rpx ;
-    display: flex;
-    padding-left: 20rpx;
-    padding-top: 10rpx;
-  }
-
-  /* .style_thesaurus_name{
-      margin-bottom: 110rpx;
-  } */
-   .thesaurus_name{
-      font-size: 30rpx; 
-      margin-top: 20rpx;
-      margin-bottom: 20rpx;
-   }
-   .thesaurus{
-    margin-left: 30rpx; 
-    margin-right: 30rpx;
- }
-  .tab_name {
-      margin-left: 20rpx ;
-      /* margin-right: 20fr ; */
-    font-family: PingFangSC-Regular;
-  }
- 
-
-  /* 上传图片 */
+/* pages/memorandum.wxss */
+/* 上传图片 */
 .img-view {
 	width: 710rpx;
 	margin: 20rpx 20rpx;
