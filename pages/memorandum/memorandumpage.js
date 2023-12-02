@@ -17,7 +17,7 @@ Page({
         })
 
         wx.request({
-            url: getApp().globalData.netServerAddrees + '/ep/queryMemorandum?memorandumName='+this.data.memorandumName,
+            url: getApp().globalData.netServerAddrees + '/queryMemorandum?memorandumName='+this.data.memorandumName,
             success: function (res) {
                 console.log(res.data)
                 var srcImage=res.data.imageList;
@@ -95,7 +95,7 @@ Page({
         }
         console.log(promiseArr)
         wx.request({
-            url: getApp().globalData.netServerAddrees + '/ep/updateMemorandumByString',
+            url: getApp().globalData.netServerAddrees + '/updateMemorandumByString',
             // header:{'content-type':'multipart/form-data;boundary=1634796333288'},
             header:{'content-type':'application/x-www-form-urlencoded'},
             method:"POST",

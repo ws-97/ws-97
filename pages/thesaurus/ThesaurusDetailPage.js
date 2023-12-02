@@ -8,13 +8,13 @@ Page(
      * 页面的初始数据
      */
     data: {
-        //     innerAudioContext: wx.createInnerAudioContext({
-        //     useWebAudioImplement: false // 是否使用 WebAudio 作为底层音频驱动，默认关闭。对于短音频、播放频繁的音频建议开启此选项，开启后将获得更优的性能表现。由于开启此选项后也会带来一定的内存增长，因此对于长音频建议关闭此选项
-        // }),
         thesaurusName: "",
         list: [],
         option: ['全部显示', '英译汉', '汉译英', '全部记住了'],
-        currentPlayWord: ""
+        currentPlayWord: "",
+        //  innerAudioContext: wx.createInnerAudioContext({
+        //     useWebAudioImplement: false // 是否使用 WebAudio 作为底层音频驱动，默认关闭。对于短音频、播放频繁的音频建议开启此选项，开启后将获得更优的性能表现。由于开启此选项后也会带来一定的内存增长，因此对于长音频建议关闭此选项
+        // }),
     },
 
     onLoad: function (options) {
@@ -31,14 +31,14 @@ Page(
         })
         if (this.data.currentTab == 3) {
             wx.request({
-                url: getApp().globalData.netServerAddrees + '/ep/addRemindRecordServlet?thesaurusName=' + this.data.thesaurusName,
+                url: getApp().globalData.netServerAddrees + '/addRemindRecordServlet?thesaurusName=' + this.data.thesaurusName,
                 success: function (res) {
                     console.log(res.data)
                     wx.navigateBack({
                         success: res => {
                             // beforePage.onLoad();//周期函数或者函数名
                         }
-                        // console.log(getApp().globalData.netServerAddrees + '/ep/queryAllCreateThesaurusServlet')
+                        // console.log(getApp().globalData.netServerAddrees + '/queryAllCreateThesaurusServlet')
                     })
                 },
                 error: function () {
@@ -63,7 +63,7 @@ Page(
         })
         var that = this
         wx.request({
-            url: getApp().globalData.netServerAddrees + '/ep/queryThesaurus?thesaurusName=' + this.data.thesaurusName,
+            url: getApp().globalData.netServerAddrees + '/queryThesaurus?thesaurusName=' + this.data.thesaurusName,
             success: function (res) {
                 console.log(res.data)
                 var temList = new Array()
@@ -82,7 +82,7 @@ Page(
                 })
                 wx.hideLoading()
 
-                // console.log(getApp().globalData.netServerAddrees + '/ep/queryAllCreateThesaurusServlet')
+                // console.log(getApp().globalData.netServerAddrees + '/queryAllCreateThesaurusServlet')
             },
             error: function () {
                 wx.hideLoading()
@@ -91,26 +91,54 @@ Page(
         })
     },
 
+    // playAudio: function (e) {
+    //     console.log("点击了播放")
+    //     console.log(e.currentTarget.dataset.word)
+    //     console.log("当前播放的单词:")
+    //     console.log(this.data.currentPlayWord)
+    //    const  innerAudioContext= wx.createInnerAudioContext({
+    //         useWebAudioImplement: false // 是否使用 WebAudio 作为底层音频驱动，默认关闭。对于短音频、播放频繁的音频建议开启此选项，开启后将获得更优的性能表现。由于开启此选项后也会带来一定的内存增长，因此对于长音频建议关闭此选项
+    //     })
+    //     if (this.data.currentPlayWord == e.currentTarget.dataset.word) {
+    //         console.log("暂停")
+    //        this.data.innerAudioContext.stop()
+    //     } else {
+    //         this.data.currentPlayWord=e.currentTarget.dataset.word
+    //         console.log("播放")
+    //         console.log(this.data.innerAudioContext)
+    //         this.data.innerAudioContext.src = 'http://dict.youdao.com/dictvoice?audio=' + e.currentTarget.dataset.word
+    //         console.log(this.data.innerAudioContext.src )
+    //         this.data.innerAudioContext.loop = true
+    //         this.data.innerAudioContext.play() // 播放
+    //     }
+    //     //   innerAudioContext.pause() // 暂停
+
+    //     //   innerAudioContext.stop() // 停止
+    // },
+
     playAudio: function (e) {
         console.log("点击了播放")
         console.log(e.currentTarget.dataset.word)
-       const innerAudioContext= wx.createInnerAudioContext({
-            useWebAudioImplement: false // 是否使用 WebAudio 作为底层音频驱动，默认关闭。对于短音频、播放频繁的音频建议开启此选项，开启后将获得更优的性能表现。由于开启此选项后也会带来一定的内存增长，因此对于长音频建议关闭此选项
-        })
-        // if (this.data.currentPlayWord == e.currentTarget.dataset.word) {
-        //     console.log("暂停")
-        //     innerAudioContext.stop()
-        // } else {
+        console.log("当前播放的单词:")
+        console.log(this.data.currentPlayWord)
+
+        if (this.data.currentPlayWord == e.currentTarget.dataset.word) {
+            console.log("暂停")
+            getApp().globalData.innerAudioContext.stop()
+        } else {
             this.data.currentPlayWord=e.currentTarget.dataset.word
             console.log("播放")
-            innerAudioContext.src = 'http://dict.youdao.com/dictvoice?audio=' + e.currentTarget.dataset.word
-            // innerAudioContext.loop = true
-            innerAudioContext.play() // 播放
-        // }
+            console.log(this.data.innerAudioContext)
+            getApp().globalData.innerAudioContext.src = 'http://dict.youdao.com/dictvoice?audio=' + e.currentTarget.dataset.word
+            console.log(getApp().globalData.innerAudioContext.src )
+            getApp().globalData.innerAudioContext.loop = true
+            getApp().globalData.innerAudioContext.play() // 播放
+        }
         //   innerAudioContext.pause() // 暂停
 
         //   innerAudioContext.stop() // 停止
     },
+
 
     /**
      * 生命周期函数--监听页面隐藏

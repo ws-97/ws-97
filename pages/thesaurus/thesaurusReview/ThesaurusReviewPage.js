@@ -33,10 +33,10 @@ Page({
         console.log(temp)
 
         var that = this
-        console.log(getApp().globalData.netServerAddrees + '/ep/queryThesaurus?thesaurusName=' + this.data.thesaurusName)
+        console.log(getApp().globalData.netServerAddrees + '/queryThesaurus?thesaurusName=' + this.data.thesaurusName)
 
         wx.request({
-            url: getApp().globalData.netServerAddrees + '/ep/queryThesaurus?thesaurusName=' + this.data.thesaurusName,
+            url: getApp().globalData.netServerAddrees + '/queryThesaurus?thesaurusName=' + this.data.thesaurusName,
 
             success: function (res) {
                 console.log(res.data)
@@ -64,7 +64,7 @@ Page({
                 })
                 wx.hideLoading()
 
-                // console.log(getApp().globalData.netServerAddrees + '/ep/queryAllCreateThesaurusServlet')
+                // console.log(getApp().globalData.netServerAddrees + '/queryAllCreateThesaurusServlet')
             },
             error: function (e) {
                 wx.hideLoading()
@@ -77,7 +77,7 @@ Page({
         console.log(e.currentTarget.dataset.text)
         wx.request({
             url: getApp().globalData.netServerAddrees + 
-            '/ep/deleteWordFromThesaurusServlet?thesaurusName=' + this.data.thesaurusName
+            '/deleteWordFromThesaurusServlet?thesaurusName=' + this.data.thesaurusName
             +"word="+e.currentTarget.dataset.text,
             success: function (res) {
                 // this.data.list.pull()

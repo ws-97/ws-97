@@ -1,44 +1,42 @@
-<!--pages/home/home.wxml-->
-
-
-<text class='tab_name' wx:for="{{navbar}}" data-tab_index="{{index}}" data-tab_name="{{item}}" bindtap="changeNavBar">{{item}}</text>
-
-<view hidden="{{currentTab==0||currentTab==1}}" class="list" wx:for="{{thesauruslist}}">
-    <view class="thesaurus" bindtap="goThesaurusDetailPage">
-        <text class="thesaurus_name" data-text="{{item}}">{{item.title}}</text>
-
-        <text class="thesaurus_name"> \t{{item.nextRemindTime}}</text>
-    </view>
-    <!-- <view class="list-content">{{item.content}}</view> -->
-</view>
-<view hidden="{{currentTab!=0}}">
-    <view class="phone">
-        <!-- <image class="ph"></image> -->
-        <input bindinput="getThesaurusNameValue" placeholder="{{createThesaurusName}}" />
-    </view>
-    <view class="phone">
-        <!-- <image class="ps"></image> -->
-        <input bindinput="getThesaurusCapacityValue" placeholder="{{capacity}}" />
-        <!-- <image class="eye"></image> -->
-    </view>
-    <button id="asdad" bindtap="createThesaurus">创建词单</button>
-</view>
-
-
-<!--备忘录-->
-<view hidden="{{currentTab!=1}}">
-
-    <view class="phone">
-        <text >备忘录名字：</text>
-        <input bindinput="getThesaurusNameValue" placeholder="{{createThesaurusName}}" />
-    </view>
-    <view class="img-view">
-        <view class="show" wx:for="{{ imgOne }}" wx:key="_id">
-            <image src="{{ item }}" mode="aspectFill" data-index="{{index}}" bindtap="previewImg"></image>
-            <image class="del-img" src="../../images/icon_trumpet.png" data-index="{{index}}" bindtap="reBackImg"></image>
+<!--pages/home.wxml-->
+<text>pages/home.wxml</text>
+<view class='page_row'>
+    <view class="search">
+        <view class="df search_arr">
+            <icon class="searchcion" size='20' type='search'></icon>
+            <input placeholder="请输入关键字" bindinput="bindKeyInput" value="{{searchInputValue}}" />
         </view>
-        <view class="up" wx:if="{{imgOneSwitch}}" bindtap="onChooseOne">+</view>
     </view>
-
-    <button class="onSavebut" bindtap="onCreatMorandum">确定</button>
+    <view class='sousuo' bindtap="searchClick">搜索</view>
 </view>
+<view class="section">
+    <view class="section__title">普通选择器</view>
+    <picker bindchange="bindPickerChange" value="{{selectIndex}}" range="{{hasCreateThesaurus}}">
+      <view class="picker">
+        当前选择：{{hasCreateThesaurus[selectIndex]}}
+      </view>
+    </picker>
+  </view>
+
+<!-- 
+<view>
+    <text data-text="{{word.cl_word}}">{{item.cl_word}}</text>
+    <image data-word="{{word.word}}" bind:tap="playAudio" class="trumpet_style" src="../../images/icon_trumpet.png"></image>
+</view>
+<view>{{word.cl_phonetic}}</view>
+<view>{{word.cl_mean}}</view>
+<view class="list-content"></view>
+<view>{{word.cl_eg}}</view> -->
+
+
+<view class="list" wx:for="{{searchResultList}}" >
+      <view >
+        <text class="list-title"   hidden="{{currentTab==2}}" data-text="{{item.word}}">{{item.cl_word}}</text>
+        <image data-word="{{item.word}}"   bind:tap="playAudio"  class="trumpet_style" src="../../images/icon_trumpet.png"></image>
+      </view>
+      <view  hidden="{{currentTab!=0}}"  class="list-content">{{item.cl_phonetic}}</view>
+      <view hidden="{{currentTab==1}}"  class="list-content">{{item.cl_mean}}</view>
+      <view hidden="{{currentTab!=0}}" class="list-content">{{item.cl_eg}}</view>
+      <!-- <view hidden="{{currentTab!=0}}" class="list-content"></view> -->
+      <view class="line"></view>
+    </view>
