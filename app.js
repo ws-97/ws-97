@@ -30,14 +30,8 @@ App({
     globalData: {
         userinfo: null, //这是一个全局变量
         ws4736: null,
-        // netServerAddrees:"http://192.168.0.101:8080/ep",
-        // netServerAddrees:"http://192.168.0.101:8080/epTest",
-
-        // 192.168.0.101
-                // netServerAddrees:"http://10.0.30.213:8080",
-
-        netServerAddrees:"http://103.97.128.236:8080/ep",
-        // netServerAddrees:"http://103.97.128.236:8080/epTest",
+        netServerAddrees:"http://192.168.0.108:8080/ep",
+        // netServerAddrees:"http://103.97.128.236:8080/ep",
 
 
         receiveTime: wx.getStorageSync('receiveTime'),

@@ -3,14 +3,12 @@
     "darkmode": true,
     "pages": [
         "pages/home/home",
-        "pages/demo/demo",
         "pages/my/my",
-        "pages/index/index",
         "pages/thesaurus/ThesaurusDetailPage",
         "pages/thesaurus/thesaurusReview/ThesaurusReviewPage",
         "pages/upcoming/upcoming",
-
-        "pages/memorandum/memorandumpage"
+        "pages/memorandum/memorandumpage",
+        "pages/question/questionDetail/questionDetailPage"
     ],
     "window": {
         "navigationBarTitleText": "小助手",

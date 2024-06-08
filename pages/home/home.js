@@ -1,7 +1,21 @@
 // pages/home.js
 Page({
 
-    /**
+    selectJoinThesaurus: function (e) {
+
+        console.log(e.detail.value)
+        console.log(e.currentTarget.dataset)
+        console.log(e.currentTarget.dataset.word_id)
+        if(this.data.selectWordID.includes(e.currentTarget.dataset.word_id)){
+            this.data.selectWordID.splice(this.data.selectWordID.indexOf(e.currentTarget.dataset.word_id),1)
+
+        }else{
+            this.data.selectWordID.push(e.currentTarget.dataset.word_id)
+        }
+        console.log(this.data.selectWordID)
+        console.log(this.data.selectWordID.toString())
+
+    }, /**
      * 页面的初始数据
      */
     data: {
@@ -10,6 +24,8 @@ Page({
         hasCreateThesaurus: [],
 
         selectIndex: 0,
+
+        selectWordID: [],
 
     },
     onShow: function () {
@@ -20,7 +36,7 @@ Page({
                 console.log(res.data)
 
                 that.setData({
-                    hasCreateThesaurus:res.data
+                    hasCreateThesaurus: res.data
                 })
                 wx.hideToast()
             },
@@ -37,19 +53,19 @@ Page({
         })
 
         wx.request({
-          url: getApp().globalData.netServerAddrees+"/addWord2Thesaurus",
-          data:{
-            thesaurusName:this.data.hasCreateThesaurus[this.data.selectIndex],
-            word:this.data.searchInputValue
-          },
-          success: function (res) {
-            console.log(res.data)
-            wx.hideToast()
-        },
-        error: function (e) {
-            console.log(e)
-            wx.hideToast()
-        }
+            url: getApp().globalData.netServerAddrees + "/addWordListThesaurus",
+            data: {
+                thesaurusName: this.data.hasCreateThesaurus[this.data.selectIndex],
+                wordIDList: this.data.selectWordID.toString()
+            },
+            success: function (res) {
+                console.log(res.data)
+                wx.hideToast()
+            },
+            error: function (e) {
+                console.log(e)
+                wx.hideToast()
+            }
         })
     },
 
@@ -59,7 +75,6 @@ Page({
         })
 
 
-
     },
 
     hasChinese: function (str) {
@@ -67,21 +82,28 @@ Page({
 
         const number = /[^\d]/g;
 
-        const englishAndNum =/[\W]/g
+        const englishAndNum = /[\W]/g
 
         if ((chinese.test(str))) {
             // wx.showToast({ title: "只允许输入中文", icon: "none" });
             return false;
-        }else{
+        } else {
             return true;
         }
-      },
+    },
 
     searchClick: function (params) {
 
         var that = this
 
-        if( that.hasChinese(this.data.searchInputValue)){
+        if (this.data.searchInputValue.toString().length === 0) {
+            wx.showToast({
+                title: '输入不为空',
+                icon: 'error',
+            })
+            return;
+        }
+        if (that.hasChinese(this.data.searchInputValue)) {
             //搜索中文
             wx.request({
                 url: getApp().globalData.netServerAddrees + '/getWordByMean',
@@ -100,7 +122,7 @@ Page({
                     wx.hideToast()
                 }
             })
-        }else{
+        } else {
             wx.request({
                 url: getApp().globalData.netServerAddrees + '/queryWord',
                 data: {
@@ -121,7 +143,6 @@ Page({
         }
 
     },
-
 
 
 

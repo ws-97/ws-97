@@ -8,17 +8,38 @@
     padding-top: 10rpx;
   }
 
-  /* .style_thesaurus_name{
-      margin-bottom: 110rpx;
-  } */
+  .list{
+      /* margin-bottom: 10rpx; */
+      margin: 10rpx;
+  } 
+  .line{
+    width:100%;
+    height:2rpx;
+    background:#aaa; /*线的颜色）*/
+    }
    .thesaurus_name{
       font-size: 30rpx; 
-      margin-top: 20rpx;
+      margin-top: 22rpx;
       margin-bottom: 20rpx;
    }
+
+   .content_view{
+
+    margin-top: 30rpx;
+ }
+   .body-view{
+    display: flex;
+    /* height:10rpx; */
+	/* flex-direction: row; */
+	/* flex-wrap: wrap;    */
+   }
+   .check_style{
+       
+       /* width: 50rpx;
+       height: 40rpx; */
+   }
    .thesaurus{
-    margin-left: 30rpx; 
-    margin-right: 30rpx;
+    margin: 30rpx; 
  }
   .tab_name {
       margin-left: 20rpx ;

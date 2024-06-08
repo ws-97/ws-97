@@ -6,6 +6,7 @@
 
 <view wx:for="{{array}}">学生{{index}}:{{item}}</view>
 <button id="asdad" bindtap="getRecieveTime">可接受次数{{receiveTimes}}</button>
+<button id="asdad" bindtap="go2ReviewPage">进入词单复习页{{receiveTimes}}</button>
 
 <button id="asdad" bindtap="getAllThesaurus">按钮组件</button>
 <button id="asdad" bindtap="vibrateLong">震动组件</button>

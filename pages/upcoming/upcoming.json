@@ -1,3 +1,6 @@
 {
-    "usingComponents": {}
+    "usingComponents": {
+"TabBar":"../component/top_tabbar/TopTabbar",
+"searchBar":"../component/searchbar/searchBar"
+    }
 }

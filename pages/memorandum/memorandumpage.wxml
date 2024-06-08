@@ -13,7 +13,7 @@
 <view class="img-view">
 	<view class="show" wx:for="{{ imgOne }}" wx:key="_id">
 		<image src="{{ item }}" mode="aspectFill" data-index="{{index}}" bindtap="previewImg"></image>
-		<image class="del-img" src="../../images/icons/close.png" data-index="{{index}}" bindtap="reBackImg"></image>
+		<image class="del-img" src="../../images/icon_delete.png" data-index="{{index}}" bindtap="reBackImg"></image>
 	</view>
 	<view class="up" wx:if="{{imgOneSwitch}}" bindtap="onChooseOne">+</view>
 </view>

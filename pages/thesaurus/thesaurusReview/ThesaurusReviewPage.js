@@ -6,19 +6,41 @@ Page({
      */
     data: {
         thesaurusName: "",
-        showAnswer: [],
+        list: [],
+
         // showList:[]
     },
 
+    onHide: function (options) {
+        console.log("页面隐藏")
+        getApp().globalData.innerAudioContext.stop()
+    },
 
     onLoad: function (options) {
-        console.log("收到的数据为：")
+        console.log("reviewer页面收到的数据为：")
         console.log(options)
         this.setData({
             thesaurusName: options.thesaurusName
-            // thesaurusName: "2023/10/26/10/14/1"
-
+            // thesaurusName: "2023/11/26"
         })
+    },
+    playAudio: function (e) {
+        console.log("点击了播放",e.currentTarget.dataset.word,"当前播放的单词:",this.data.currentPlayWord)
+        if (this.data.currentPlayWord == e.currentTarget.dataset.word) {
+            console.log("暂停")
+            getApp().globalData.innerAudioContext.stop()
+        } else {
+            this.data.currentPlayWord = e.currentTarget.dataset.word
+            console.log("播放")
+            console.log(this.data.innerAudioContext)
+            getApp().globalData.innerAudioContext.src = 'http://dict.youdao.com/dictvoice?audio=' + e.currentTarget.dataset.word
+            console.log(getApp().globalData.innerAudioContext.src)
+            getApp().globalData.innerAudioContext.loop = true
+            getApp().globalData.innerAudioContext.play() // 播放
+        }
+        //   innerAudioContext.pause() // 暂停
+
+        //   innerAudioContext.stop() // 停止
     },
 
     /**
@@ -40,27 +62,23 @@ Page({
 
             success: function (res) {
                 console.log(res.data)
-                var temList = new Array()
                 var allList = new Array()
-
                 for (var index in res.data) {
                     // title : res.data[index].title
+                    var temp = false
+                    // if (index == 0) {
+                    //     temp = true
+                    // }
                     allList.push({
                         word: res.data[index].cl_word,
                         phonetic: res.data[index].cl_phonetic,
                         mean: res.data[index].cl_mean,
                         eg: res.data[index].cl_eg,
-                    }),
-                    temList.push(
-                        {
-                            word: res.data[index].cl_word,
-                        }
-                    )
+                        showAnswer: temp
+                    })
                 }
                 that.setData({ //setData在此位置
-                    list:temList,
-                    showAnswer:allList
-                    // list: showAnswer, //这里把从后台获取到的数值赋给lists
+                    list: allList,
                 })
                 wx.hideLoading()
 
@@ -74,17 +92,26 @@ Page({
     },
 
     showAnswerAndRemove: function (e) {
-        console.log(e.currentTarget.dataset.text)
+        var that = this
         wx.request({
-            url: getApp().globalData.netServerAddrees + 
-            '/deleteWordFromThesaurusServlet?thesaurusName=' + this.data.thesaurusName
-            +"word="+e.currentTarget.dataset.text,
+            url: getApp().globalData.netServerAddrees +
+                '/deleteWordFromThesaurusServlet?thesaurusName=' + this.data.thesaurusName +
+                "&word=" + e.currentTarget.dataset.text,
             success: function (res) {
-                // this.data.list.pull()
-                // that.setData({ //setData在此位置
-                //     list:temList,
-                //     showAnswer:allList
-                // })
+                console.log("删除单词成功", e.currentTarget.dataset.text)
+                var tempList = []
+                that.data.list.forEach(function (item, index) {
+                    console.log("变量:", item.word, e.currentTarget.dataset.text, (item.word.trim() === e.currentTarget.dataset.text.trim()));
+                    if (e.currentTarget.dataset.text.trim() == item.word.trim()) {
+                        item.showAnswer = true
+                        console.log("匹配成功", item)
+                    }
+                    tempList.push(item)
+                })
+                that.setData({
+                        list: tempList
+                    } //setData在此位置
+                )
                 wx.hideLoading()
             },
             error: function (e) {
@@ -96,13 +123,13 @@ Page({
         // })
         // this.data.showAnswer.push(e.currentTarget.dataset.text)
         // var temp=this.data.showAnswer;
-    //  temp.push(e.currentTarget.dataset.text)
-    // console.log(this.data.list)
-    // console.log(this.data.list.indexOf(e.currentTarget.dataset.text))
-    // this.data.showAnswer.forEach(element => {
-    //     if(element.word==e.currentTarget.dataset.text){zz}
-    // });
-    //    console.log(this.data.showAnswer[this.data.list.indexOf(e.currentTarget.dataset.text)])
+        //  temp.push(e.currentTarget.dataset.text)
+        // console.log(this.data.list)
+        // console.log(this.data.list.indexOf(e.currentTarget.dataset.text))
+        // this.data.showAnswer.forEach(element => {
+        //     if(element.word==e.currentTarget.dataset.text){zz}
+        // });
+        //    console.log(this.data.showAnswer[this.data.list.indexOf(e.currentTarget.dataset.text)])
 
     }
 })

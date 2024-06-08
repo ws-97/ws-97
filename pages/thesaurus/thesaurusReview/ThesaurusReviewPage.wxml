@@ -1,12 +1,15 @@
 <!--pages/thesaurus/thesaurusReview/ThesaurusReviewPage.wxml-->
 <text>pages/thesaurus/thesaurusReview/ThesaurusReviewPage.wxml</text>
-<view class="list" wx:for="{{list}}" >
+<view style="margin: 20rpx;" wx:for="{{list}}" >
       <view >
-        <text class="list-title"  bind:tap="showAnswerAndRemove"  data-text="{{item.word}}">{{item.word}}</text>
+        <text class="list-title"  bind:tap="showAnswerAndRemove"  data-text="{{item.word}}\n\n">{{item.word}}</text>
         <!-- <text class="list-date">{{item.date}} \n {{item.time}}</text> -->
+        <image data-word="{{item.word}}"  hidden="{{!item.showAnswer}}"   bind:tap="playAudio"  style="margin-left: 10rpx; height: 50rpx; width: 50rpx;" src="../../../images/icon_trumpet.png"></image>
       </view>
-      <view  hidden="{{Boolean(Math.round(Math.random()))}}"  class="list-content">{{item.phonetic}}</view>
-      <view  hidden="{{!showAnswer.includes(item.word)}}" class="list-content">{{item.mean}}</view>
-      <view  hidden="{{!showAnswer.includes(item.word)}}" class="list-content">{{item.eg}}</view>
-      <view  hidden="{{!showAnswer.includes(item.word)}}" class="list-content"></view>
+      <view  hidden="{{!item.showAnswer}}"  class="list-content">{{item.phonetic}}</view>
+      <view  hidden="{{!item.showAnswer}}" class="list-content">{{item.mean}}</view>
+      <view  hidden="{{!item.showAnswer}}" class="list-content">{{item.eg}}</view>
+      <view  hidden="{{!item.showAnswer}}" class="list-content">{{item.image}}</view>
+
+      <view  hidden="{{!item.showAnswer}}" class="list-content"></view>
     </view>

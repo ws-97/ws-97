@@ -8,3 +8,11 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+.mp_ep_text_size{
+    font-size: small;
+}
+
+.ep_global_margin{
+
+    margin-left: 10rpx;
+}

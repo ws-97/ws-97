@@ -4,39 +4,47 @@
     <view class="search">
         <view class="df search_arr">
             <icon class="searchcion" size='20' type='search'></icon>
-            <input placeholder="请输入关键字" bindinput="bindKeyInput" value="{{searchInputValue}}" />
+            <input placeholder="请输入关键字" bindinput="bindKeyInput" value="{{searchInputValue}}"/>
         </view>
     </view>
     <view class='sousuo' bindtap="searchClick">搜索</view>
 </view>
 <view class="section">
-    <view class="section__title">普通选择器</view>
     <picker bindchange="bindPickerChange" value="{{selectIndex}}" range="{{hasCreateThesaurus}}">
-      <view class="picker">
-        当前选择：{{hasCreateThesaurus[selectIndex]}}
-      </view>
+        <view class="picker">
+            当前选择：{{hasCreateThesaurus[selectIndex]}}
+        </view>
     </picker>
-  </view>
-
-<!-- 
-<view>
-    <text data-text="{{word.cl_word}}">{{item.cl_word}}</text>
-    <image data-word="{{word.word}}" bind:tap="playAudio" class="trumpet_style" src="../../images/icon_trumpet.png"></image>
 </view>
-<view>{{word.cl_phonetic}}</view>
-<view>{{word.cl_mean}}</view>
-<view class="list-content"></view>
-<view>{{word.cl_eg}}</view> -->
+
+        <!--
+        <view>
+            <text data-text="{{word.cl_word}}">{{item.cl_word}}</text>
+            <image data-word="{{word.word}}" bind:tap="playAudio" class="trumpet_style" src="../../images/icon_trumpet.png"></image>
+        </view>
+        <view>{{word.cl_phonetic}}</view>
+        <view>{{word.cl_mean}}</view>
+        <view class="list-content"></view>
+        <view>{{word.cl_eg}}</view> -->
 
 
-<view class="list" wx:for="{{searchResultList}}" >
-      <view >
-        <text class="list-title"   hidden="{{currentTab==2}}" data-text="{{item.word}}">{{item.cl_word}}</text>
-        <image data-word="{{item.word}}"   bind:tap="playAudio"  class="trumpet_style" src="../../images/icon_trumpet.png"></image>
-      </view>
-      <view  hidden="{{currentTab!=0}}"  class="list-content">{{item.cl_phonetic}}</view>
-      <view hidden="{{currentTab==1}}"  class="list-content">{{item.cl_mean}}</view>
-      <view hidden="{{currentTab!=0}}" class="list-content">{{item.cl_eg}}</view>
-      <!-- <view hidden="{{currentTab!=0}}" class="list-content"></view> -->
-      <view class="line"></view>
+<view class="list" wx:for="{{searchResultList}}">
+
+    <view>
+
+        <text class="list-title" hidden="{{currentTab==2}}" data-text="{{item.word}}">{{item.cl_word}}</text>
+        <image data-word="{{item.word}}" bind:tap="playAudio" class="trumpet_style"
+               src="../../images/icon_trumpet.png"></image>
+
+            <label class="checkbox">
+                <checkbox value="cb" data-word_id="{{item.cl_id}}"  bindtap="selectJoinThesaurus"
+                />加入词单
+            </label>
+
     </view>
+    <view hidden="{{currentTab!=0}}" class="list-content">{{item.cl_phonetic}}</view>
+    <view hidden="{{currentTab==1}}" class="list-content">{{item.cl_mean}}</view>
+    <view hidden="{{currentTab!=0}}" class="list-content">{{item.cl_eg}}</view>
+    <!-- <view hidden="{{currentTab!=0}}" class="list-content"></view> -->
+    <view class="line"></view>
+</view>

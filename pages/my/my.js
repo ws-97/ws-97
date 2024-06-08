@@ -2,7 +2,7 @@
 Page({
 
     //定义页面变量
-    myData:"123123",
+    myData: "123123",
     /**
      * 页面的初始数据
      */
@@ -16,7 +16,7 @@ Page({
     },
     getAllThesaurus: function () {
         wx.request({
-            url: getApp().globalData.netServerAddrees+'/test',
+            url: getApp().globalData.netServerAddrees + '/test',
             success: function (res) {
 
                 console.log("请求jieguo " + res.data)
@@ -24,10 +24,18 @@ Page({
         })
     },
 
+    go2ReviewPage: function () {
+        wx.navigateTo({
+            url: '../thesaurus/thesaurusReview'+
+            '/ThesaurusReviewPage?thesaurusName=2024/3/30/2/22/11',
+
+        })
+    },
+
 
     getAccessToken: function () {
         wx.request({
-            url: getApp().globalData.netServerAddrees+ '/getAccessToken1',
+            url: getApp().globalData.netServerAddrees + '/getAccessToken1',
             method: "GET",
             success: function (res) {
                 console.log("getAccessToken " + res)
@@ -39,7 +47,7 @@ Page({
     sendMessage1: function () {
         wx.request({
             method: "GET",
-            url: getApp().globalData.netServerAddrees+'/sendMessage',
+            url: getApp().globalData.netServerAddrees + '/sendMessage',
             success: function (res) {
                 console.log("getAccessToken " + res.data.access_token)
                 console.log(res.data)
@@ -59,17 +67,6 @@ Page({
                 // console.log(this.data.receiveTimes)
             }
         })
-
-
-        //   for (let index = 0; index < 10; index++) {
-        // console.log("订阅消息");
-        // wx.requestSubscribeMessage({
-        //     tmplIds: ['tzl2jzIM73jZffYoX5iuLoFfjrgylnaSYOcXC6qfu2s'],
-        //     success (res) {
-        //         console.log(res)
-        //      }
-        //   })
-        // };
     },
 
 
@@ -80,7 +77,7 @@ Page({
                 if (res.code) {
                     //发起网络请求
                     wx.request({
-                        url: getApp().globalData.netServerAddrees+'/getOpenId',
+                        url: getApp().globalData.netServerAddrees + '/getOpenId',
 
                         //   url: 'http://103.97.128.236:8080/getOpenId',
                         data: {
@@ -121,32 +118,14 @@ Page({
 
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-
-    onReady() {
-        // this.subscribleMessage()
-
-    },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow() {
         console.log("词单也出现了：")
-        // for (let index = 0; index < 5; index++) {
-        // console.log("进入循环订阅：")
-        // this.subscribleMessage()
-        // }
     },
-    // onShow:function(){
-    //     console.log("词单也出现了：");
-    //     for (let index = 0; index < 20; index++) {
-    //         console.log("订阅消息");
-    //         subscribleMessage();
-    //     };
-    // },
+
     /**
      * 生命周期函数--监听页面隐藏
      */

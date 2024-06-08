@@ -17,7 +17,9 @@
     height: 68rpx;  
     margin-top: 34rpx;  
   }  
-    
+    .checkbox{
+        margin-left: 30rpx;
+    }
   .sousuo {  
     margin-left: 15rpx;  
     width: 15%;  

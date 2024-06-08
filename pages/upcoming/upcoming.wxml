@@ -1,19 +1,15 @@
-<!--pages/home/home.wxml-->
+<text>/pages/upcoming/upcoming.wxml \n</text>
+<!-- 创建词单页   创建备忘录页  已创建页   进行中页   已完成页 -->
+<!--创建词单页   已创建页   进行中页   已完成页-->
 
+<TabBar tabList="{{tabList}}" bindtabsItemChange="tabsItemChange"></TabBar>
 
-<text class='tab_name' wx:for="{{navbar}}" data-tab_index="{{index}}" data-tab_name="{{item}}" bindtap="changeNavBar">{{item}}</text>
-
-<view hidden="{{currentTab==0||currentTab==1}}" class="list" wx:for="{{thesauruslist}}">
-    <view class="thesaurus" bindtap="goThesaurusDetailPage">
-        <text class="thesaurus_name" data-text="{{item}}">{{item.title}}</text>
-
-        <text class="thesaurus_name"> \t{{item.nextRemindTime}}</text>
-    </view>
-    <!-- <view class="list-content">{{item.content}}</view> -->
-</view>
+<searchBar bind:clear='onClear'   bind:onCancel='cancelSearch'  bind:onChange='change' background="#000000"></searchBar>
+<!-- <text class='tab_name' wx:for="{{navbar}}" data-tab_index="{{index}}" data-tab_name="{{item}}" bindtap="changeNavBar">{{item}}</text> -->
+<View class="content_view">
+<!-- //待办-创建词单页 -->
 <view hidden="{{currentTab!=0}}">
     <view class="phone">
-        <!-- <image class="ph"></image> -->
         <input bindinput="getThesaurusNameValue" placeholder="{{createThesaurusName}}" />
     </view>
     <view class="phone">
@@ -21,24 +17,70 @@
         <input bindinput="getThesaurusCapacityValue" placeholder="{{capacity}}" />
         <!-- <image class="eye"></image> -->
     </view>
+    <view class="section section_gap">
+            <view class="body-view">
+                        <view class="mp_ep_text_size">开启随机</view>
+                <switch class="ep_global_margin" checked="{{openRandom}}" bindchange="switchChange"/>
+            </view>
+        </view>
     <button id="asdad" bindtap="createThesaurus">创建词单</button>
 </view>
+<!-- 待办-已创建页 或者已完成页 -->
+<view hidden="{{currentTab!=1}}" class="list" wx:for="{{thesauruslist}}" wx:key="title">
+    <view class="thesaurus" bindtap="goDetailPage">
+        <text class="thesaurus_name" data-text="{{item}}">{{item.title}}</text>
+    </view>
+    <view class="line"></view>
+</view>
+<!-- 待办-进行中页 -->
+<view hidden="{{currentTab!=2}}" class="list" wx:for="{{thesauruslist}}" wx:key="title">
+    <view class="thesaurus" bindtap="goDetailPage">
+        <text class="thesaurus_name" data-text="{{item}}">{{item.title}}</text>
+        <text class="thesaurus_name"> \n{{item.nextRemindTime}}</text>
+    </view>
+    <view class="line"></view>
+</view>
+<!-- 已完成页 -->
+<view hidden="{{currentTab!=3}}" class="list" wx:for="{{thesauruslist}}" wx:key="title">
+    <view class="thesaurus" bindtap="goDetailPage">
+        <text class="thesaurus_name" data-text="{{item}}">{{item.title}}</text>
+    </view>
+    <view class="line"></view>
+</view>
 
+</View>
+
+
+
+
+<!--问题单页-->
+<!-- <view hidden="{{currentTab!=1}}" class="list" wx:for="{{questionlist}}">
+    <view class="thesaurus" bindtap="goDetailPage">
+        <text class="thesaurus_name" data-text="{{item}}">{{item.title}}</text>
+        <text class="thesaurus_name"> \t{{item.nextRemindTime}}</text>
+    </view>
+  <view class="list-content">{{item.content}}</view> -->
+<!--</view> -->
 
 <!--备忘录-->
-<view hidden="{{currentTab!=1}}">
+<!-- <view hidden="{{currentTab!=1}}">
 
     <view class="phone">
         <text >备忘录名字：</text>
-        <input bindinput="getThesaurusNameValue" placeholder="{{createThesaurusName}}" />
-    </view>
-    <view class="img-view">
-        <view class="show" wx:for="{{ imgOne }}" wx:key="_id">
-            <image src="{{ item }}" mode="aspectFill" data-index="{{index}}" bindtap="previewImg"></image>
-            <image class="del-img" src="../../images/icon_trumpet.png" data-index="{{index}}" bindtap="reBackImg"></image>
-        </view>
-        <view class="up" wx:if="{{imgOneSwitch}}" bindtap="onChooseOne">+</view>
-    </view>
+		<!--通过bindinput可以-->
+        <!-- <input bindinput="getThesaurusNameValue" placeholder="{{createThesaurusName}}" /> -->
+    <!-- </view> -->
+	<!-- <view class="phone"> -->
+	    <!-- <text >描述：</text> -->
+	    <!-- <input bindinput="getMemorandumDesValue" placeholder="请输入描述" /> -->
+	<!-- </view> -->
+    <!-- <view class="img-view"> -->
+        <!-- <view class="show" wx:for="{{ imgOne }}" wx:key="_id"> -->
+            <!-- <image src="{{ item }}" mode="aspectFill" data-index="{{index}}" bindtap="previewImg"></image> -->
+            <!-- <image class="del-img" src="../../images/icon_trumpet.png" data-index="{{index}}" bindtap="reBackImg"></image> -->
+        <!-- </view> -->
+        <!-- <view class="up" wx:if="{{imgOneSwitch}}" bindtap="onChooseOne">+</view> -->
+    <!-- </view> -->
 
-    <button class="onSavebut" bindtap="onCreatMorandum">确定</button>
-</view>
+    <!-- <button class="onSavebut" bindtap="onCreatMorandum">确定</button> -->
+<!-- </view> --> 
