@@ -30,7 +30,7 @@ App({
     globalData: {
         userinfo: null, //这是一个全局变量
         ws4736: null,
-        netServerAddrees:"http://192.168.0.108:8080/ep",
+        netServerAddrees: "http://192.168.0.102:8080/ep",
         // netServerAddrees:"http://103.97.128.236:8080/ep",
 
 
@@ -51,7 +51,7 @@ App({
      */
     onLaunch: function () {
         console.log("小程序初始化完成")
-        console.log(" wx.getStorageSync('receiveTime')"+ wx.getStorageSync('receiveTime'))
+        console.log(" wx.getStorageSync('receiveTime')" + wx.getStorageSync('receiveTime'))
 
     },
 

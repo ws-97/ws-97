@@ -1,4 +1,9 @@
 // pages/thesaurus/thesaurusReview/ThesaurusReviewPage.js
+/**
+ * 该页面负责显示单词表复习页面
+ *
+ * 接受的数据为thesaurusName
+ */
 Page({
 
     /**
@@ -26,7 +31,7 @@ Page({
     },
     playAudio: function (e) {
         console.log("点击了播放",e.currentTarget.dataset.word,"当前播放的单词:",this.data.currentPlayWord)
-        if (this.data.currentPlayWord == e.currentTarget.dataset.word) {
+        if (this.data.currentPlayWord === e.currentTarget.dataset.word) {
             console.log("暂停")
             getApp().globalData.innerAudioContext.stop()
         } else {

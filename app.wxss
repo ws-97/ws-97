@@ -16,3 +16,9 @@
 
     margin-left: 10rpx;
 }
+
+/* page{
+    /* background-color: black; */
+    /* --themeColor:black; */
+
+/* } */ 

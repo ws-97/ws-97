@@ -215,30 +215,30 @@ Page({
     //     // wx.hideLoading()
     // },
 
-    // getHasFinshedThesaurus: function () {
-    //     var that = this
-    //     wx.request({
-    //         url: getApp().globalData.netServerAddrees + '/getFinishedThesaurus',
-    //         success: function (res) {
-    //             console.log(res.data)
-    //             var temList = new Array()
-    //             for (var index in res.data) {
-    //                 // title : res.data[index].title
-    //                 temList.push({
-    //                     title: res.data[index].cl_thesaurusName,
-    //                 })
-    //             }
-    //             that.setData({ //setData在此位置
-    //                 thesauruslist: temList, //这里把从后台获取到的数值赋给lists
-    //             })
-    //             wx.hideLoading()
-    //         },
-    //         error: function (e) {
-    //             console.log(e)
-    //             wx.hideLoading()
-    //         }
-    //     })
-    // },
+    getHasFinshedThesaurus: function () {
+        var that = this
+        wx.request({
+            url: getApp().globalData.netServerAddrees + '/getFinishedThesaurus',
+            success: function (res) {
+                console.log(res.data)
+                var temList = new Array()
+                for (var index in res.data) {
+                    // title : res.data[index].title
+                    temList.push({
+                        title: res.data[index].cl_thesaurusName,
+                    })
+                }
+                that.setData({ //setData在此位置
+                    thesauruslist: temList, //这里把从后台获取到的数值赋给lists
+                })
+                wx.hideLoading()
+            },
+            error: function (e) {
+                console.log(e)
+                wx.hideLoading()
+            }
+        })
+    },
 
     onClear: function (e) {
         console.log("清空搜索框")

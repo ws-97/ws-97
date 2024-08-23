@@ -27,7 +27,7 @@ Page({
     go2ReviewPage: function () {
         wx.navigateTo({
             url: '../thesaurus/thesaurusReview'+
-            '/ThesaurusReviewPage?thesaurusName=2024/3/30/2/22/11',
+            '/ThesaurusReviewPage?thesaurusName=2.viewmodel如何与activity绑定？',
 
         })
     },
