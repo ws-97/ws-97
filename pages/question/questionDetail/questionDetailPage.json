@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "hg-editor": "/pages/component/hg-editor/hg-editor",
+    "mp-html": "/pages/component/mp-html/index",
+    "timePicker": "/pages/component/timePicker/timePicker"
+  }
+}

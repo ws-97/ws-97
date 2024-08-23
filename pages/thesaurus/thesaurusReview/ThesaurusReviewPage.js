@@ -96,22 +96,43 @@ Page({
         })
     },
 
-    showAnswerAndRemove: function (e) {
+    showAnswer: function (e) {
+        var tempList = []
+
+        this.data.list.forEach(function (item, index) {
+            console.log("变量:", item.word, e.currentTarget.dataset.text, (item.word.trim() === e.currentTarget.dataset.text.trim()));
+            if (e.currentTarget.dataset.text.trim() == item.word.trim()) {
+                item.showAnswer = true
+                console.log("匹配成功", item)
+            }
+            tempList.push(item)
+        })
+        this.setData({
+                list: tempList
+            } //setData在此位置
+        )
+
+
+
+    },
+    releaseWord:function (e){
+        wx.showLoading()
+
         var that = this
         wx.request({
             url: getApp().globalData.netServerAddrees +
                 '/deleteWordFromThesaurusServlet?thesaurusName=' + this.data.thesaurusName +
-                "&word=" + e.currentTarget.dataset.text,
+                "&word=" + e.currentTarget.dataset.word,
             success: function (res) {
-                console.log("删除单词成功", e.currentTarget.dataset.text)
+                console.log("删除单词成功", e.currentTarget.dataset.word)
                 var tempList = []
                 that.data.list.forEach(function (item, index) {
-                    console.log("变量:", item.word, e.currentTarget.dataset.text, (item.word.trim() === e.currentTarget.dataset.text.trim()));
-                    if (e.currentTarget.dataset.text.trim() == item.word.trim()) {
-                        item.showAnswer = true
+                    console.log("变量:", item.word, e.currentTarget.dataset.word, (item.word.trim() === e.currentTarget.dataset.word.trim()));
+                    if (e.currentTarget.dataset.word.trim() === item.word.trim()) {
                         console.log("匹配成功", item)
+                    }else{
+                        tempList.push(item)
                     }
-                    tempList.push(item)
                 })
                 that.setData({
                         list: tempList
@@ -123,18 +144,6 @@ Page({
                 wx.hideLoading()
             }
         })
-        // this.setData({
-        //     showAnswer.push(e.currentTarget.dataset.text)
-        // })
-        // this.data.showAnswer.push(e.currentTarget.dataset.text)
-        // var temp=this.data.showAnswer;
-        //  temp.push(e.currentTarget.dataset.text)
-        // console.log(this.data.list)
-        // console.log(this.data.list.indexOf(e.currentTarget.dataset.text))
-        // this.data.showAnswer.forEach(element => {
-        //     if(element.word==e.currentTarget.dataset.text){zz}
-        // });
-        //    console.log(this.data.showAnswer[this.data.list.indexOf(e.currentTarget.dataset.text)])
 
     }
 })

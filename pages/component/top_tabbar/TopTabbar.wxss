@@ -1,0 +1,42 @@
+/* pages/component/top_tabbar/TopTabbar.wxss */
+
+.tabs{
+  position: fixed;
+  top: 0;
+  width: 100vw;
+   background-color:black;
+   z-index: 99;
+   border-bottom: 1px solid #efefef;
+   padding-bottom: 20rpx;
+}
+.tabs_title{
+  /* width: 400rpx; */
+ width: 100%;  
+  display: flex;
+  font-size: 28rpx;
+  padding: 0 20rpx;
+}
+.title_item{
+  color: #999;
+  padding: 15rpx 0;
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.active{
+  /* color:#ED8137; */
+  color: #eee3e3;
+  font-size: 18px;
+  font-weight: 800;
+ 
+}
+.active1{
+  /* color:#ED8137; */
+  color: #000000;
+  font-size: 18px;
+  font-weight: 800;
+  border-bottom: 8rpx solid #be0872;
+  border-radius: 4px;
+}

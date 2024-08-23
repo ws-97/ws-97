@@ -1,10 +1,14 @@
 <!--pages/thesaurus/thesaurusReview/ThesaurusReviewPage.wxml-->
 <text>pages/thesaurus/thesaurusReview/ThesaurusReviewPage.wxml</text>
 <view style="margin: 20rpx;" wx:for="{{list}}" >
-      <view >
-        <text class="list-title"  bind:tap="showAnswerAndRemove"  data-text="{{item.word}}\n\n">{{item.word}}</text>
+      <view class="linearlayout_row">
+        <text class="list-title"  bind:tap="showAnswer"  data-text="{{item.word}}\n\n">{{item.word}}</text>
         <!-- <text class="list-date">{{item.date}} \n {{item.time}}</text> -->
-        <image data-word="{{item.word}}"  hidden="{{!item.showAnswer}}"   bind:tap="playAudio"  style="margin-left: 10rpx; height: 50rpx; width: 50rpx;" src="../../../images/icon_trumpet.png"></image>
+        <image data-word="{{item.word}}"  hidden="{{!item.showAnswer}}"
+               bind:tap="playAudio"  style="margin-left: 10rpx; height: 50rpx; width: 50rpx;"
+               src="../../../images/icon_trumpet.png"></image>
+          <button  hidden="{{!item.showAnswer}}" class="forget" bindtap="releaseWord" data-word="{{item.word}}">忘记了</button>
+
       </view>
       <view  hidden="{{!item.showAnswer}}"  class="list-content">{{item.phonetic}}</view>
       <view  hidden="{{!item.showAnswer}}" class="list-content">{{item.mean}}</view>

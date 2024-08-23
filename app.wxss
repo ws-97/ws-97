@@ -1,24 +1,61 @@
 /**app.wxss**/
+/**
+
+ */
 .container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
-.mp_ep_text_size{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 200rpx 0;
+    box-sizing: border-box;
+}
+
+/**
+ * 全局容器样式
+
+ 内部子组件 并列显示
+ */
+.linearlayout_row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.mp_ep_text_size {
     font-size: small;
 }
 
-.ep_global_margin{
+.ep_global_margin {
 
     margin-left: 10rpx;
 }
 
+
+/*
+椭圆形按钮
+ */
+.oval-button {
+    display: inline-block;
+    padding: 5px 10px; /* 调整内边距以改变按钮大小 */
+    /*background-color: #4CAF50; !* 按钮背景颜色 *!*/
+    /*color: white; !* 文字颜色 *!*/
+    border: none; /* 移除边框 */
+    border-radius: 10px; /* 边框半径，值越大越圆 */
+    /*font-size: 16px; !* 字体大小 *!*/
+    cursor: pointer; /* 鼠标悬停时显示手型 */
+    flex: 1;/* 子元素将平分父容器的宽度 */
+    margin: 10rpx;
+}
+
+
 /* page{
     /* background-color: black; */
-    /* --themeColor:black; */
+/* --themeColor:black; */
 
 /* } */ 

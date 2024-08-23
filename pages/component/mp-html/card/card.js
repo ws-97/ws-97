@@ -1,0 +1,1 @@
+"use strict";Component({properties:{mode:{type:Boolean,default:!1},src:String,title:String,desc:String,url:String,color:String,bgcolor:String,border:String},data:{},methods:{onClick:function(r){this.data.url&&this.data.url.trim().length>6&&!this.data.mode&&wx.navigateTo({url:this.data.url})}}});

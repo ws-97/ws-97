@@ -1,0 +1,34 @@
+<!--pages/question/qustionDetail/questionDetailPage.wxml-->
+<text>pages/question/qustionDetail/questionDetailPage.wxml</text>
+
+<view class="linearlayout_row">
+    <button class="oval-button"  bindtap="remembered" hidden="{{isReview}}">我已经全部记住了\n</button>
+    <button class="oval-button" id="asdad" bindtap="setNextRemindTime">设置下次提醒时间</button>
+
+</view>
+
+<text >问题：{{question}}\n</text>
+<text bindtap="surveryAnswer" >查看答案：\n</text>
+<view class="page-content"  hidden="{{!surveryAnswer}}">
+    <!-- <rich-text nodes="{{htmlSnip}}" catchtap="catchImage"></rich-text> -->
+    <hg-editor  id="ep_editor" question="{{question}}" bindtap="viewImage"
+      defaultContent="{{htmlSnip}}"  ></hg-editor>
+
+</view>
+
+
+
+<timePicker  bindsetPickerTime="setPickerTime" 
+   pickerShow="{{showSelectTimeBottomPopView}}"
+    config="{{timePickerConfig}}" 
+      id="timePicker"  ></timePicker>
+
+
+
+
+
+
+
+    <!-- <mp-html editable="false" content="{{htmlSnip}}"></mp-html> -->
+
+<!-- <hg-editor id="ep_editor" hidden="{{!surveryAnswer}}" question="{{question}}"  defaultContent="{{htmlSnip}}"  ></hg-editor> -->

@@ -1,0 +1,1 @@
+"use strict";function t(t){}module.exports=t;
