@@ -5,6 +5,7 @@
 
     <view class="btn-box" catchtouchmove="onCatchTouchMove">
       <view class="pick_btn" bindtap="hideModal">取消</view>
+      <view class="pick_btn" >{{time_picker_title}}</view>
       <view class='pick_btn' style="color: #19f" bindtap="onConfirm">确定</view>
     </view>
 

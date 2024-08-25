@@ -18,7 +18,9 @@
 
 
 
-<timePicker  bindsetPickerTime="setPickerTime" 
+<timePicker
+        bindhidePicker="hidePicker"
+        bindsetPickerTime="setPickerTime"
    pickerShow="{{showSelectTimeBottomPopView}}"
     config="{{timePickerConfig}}" 
       id="timePicker"  ></timePicker>

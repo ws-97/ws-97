@@ -6,7 +6,18 @@
 
 <view wx:for="{{array}}">学生{{index}}:{{item}}</view>
 <button id="asdad" bindtap="getRecieveTime">可接受次数{{receiveTimes}}</button>
+<text>这是editor</text>
+<editor bindinput="editorInput"></editor>
+<text>这是 input</text>
+<input bind:blur="queryInput"></input>
 <button id="asdad" bindtap="go2ReviewPage">进入词单复习页{{receiveTimes}}</button>
+
+<view style="   display: flex; flex-direction: row;">
+    <text>这是 input</text>
+    <input value="2.viewmodel如何与activity绑定？"  placeholder="请输入问题" bind:blur="queryInput"></input>
+</view>
+
+<button id="asdad" bindtap="go2QuestionReviewPage">进入问题复习页{{receiveTimes}}</button>
 
 <button id="asdad" bindtap="getAllThesaurus">按钮组件</button>
 <button id="asdad" bindtap="vibrateLong">震动组件</button>
@@ -15,32 +26,31 @@
 <button id="asdad" bindtap="getOpenId">获取OPenID2</button>
 <button id="asdad" bindtap="sendMessage1">发送消息3</button>
 
-<view class="title"> 1.视图容器view的简单应用</view>
+<view class="title">1.视图容器view的简单应用</view>
 <view class="demo-box">
 
     <view class="title">(1) 不组织父容器的view_hover</view>
     <view class="view_parent" hover-class="view_hover">
-        我是父容器<view>
+        我是父容器
+        <view>
             <view class="view_son" hover-class="view_hover">
                 我是子容器view
             </view>
         </view>
     </view>
     <view class="demo-box">2.阻止父容器的view_hover</view>
-<view class='view_parent' hover-class="view_hover">
-我是父容器
-<view class="view_son" hover-class="view_hover" hover-stop-propagation="">
-    我是子容器view
-</view>
-</view>
+    <view class='view_parent' hover-class="view_hover">
+        我是父容器
+        <view class="view_son" hover-class="view_hover" hover-stop-propagation="">
+            我是子容器view
+        </view>
+    </view>
 
 </view>
-
-
 
 
 <scroll-view scroll-y>
-<view>1</view>
-<view>2</view>
-<view>3</view>
+    <view>1</view>
+    <view>2</view>
+    <view>3</view>
 </scroll-view>

@@ -11,7 +11,7 @@ Page({
         openId: "",
         word: "", //初始化单词
         msg: '此为词单首页',
-
+        queryParam:"2.viewmodel如何与activity绑定？",
         array: ["qwe", "Qweqweqe", "qweqfdgsgdd"]
     },
     getAllThesaurus: function () {
@@ -25,11 +25,23 @@ Page({
     },
 
     go2ReviewPage: function () {
+        console.log("进入复习页面", this.data.queryParam)
         wx.navigateTo({
             url: '../thesaurus/thesaurusReview'+
             '/ThesaurusReviewPage?thesaurusName=2024/4/20/11/12/4',
 
         })
+    },
+    go2QuestionReviewPage: function () {
+        console.log("进入问题复习页面", this.data.queryParam)
+        wx.navigateTo({
+            url: '../question/questionDetail/questionDetailPage?question='+this.data.queryParam+"&"+
+                "isReview=true"
+        })
+    },
+    queryInput:function (e){
+        console.log("queryInput",e)
+        this.data.queryParam = e.detail.value;
     },
 
 
