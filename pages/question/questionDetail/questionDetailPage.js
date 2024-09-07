@@ -194,7 +194,7 @@ Page({
                         column: "second",                       //可选的最小时间范围day、hour、minute、secend
                         dateLimit: true,                        //是否现在时间可选范围，false时可选任意时间；当为数字n时，范围是当前时间的最近n天
                         time_picker_title: nextRemindTime,  //时间选择器标题
-                        // initStartTime: '2019-01-01 12:32:44',    //picker初始时间，默认当前时间
+                        // initStartTime: formatTime(new Date()).str,    //picker初始时间，默认当前时间
                         // initEndTime: nextRemindTime,     //picker初始结束时间，默认当前时间
                         limitStartTime: formatTime(new Date()).str ,  //最小可选时间 2015-05-06 12:32:44"
                         limitEndTime: nextRemindTime     //最大可选时间

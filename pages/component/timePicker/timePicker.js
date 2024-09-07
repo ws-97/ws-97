@@ -47,42 +47,62 @@ Component({
                         animationData: animation.export()
                     });
                 }
+                console.log("timepicker show observer ", this.data.startValue,this.data.endValue)
 
+                this.readConfig();
+                this.initPick(this.data.config || null);
+
+                console.log("timepicker show observer ", this.data.startValue,this.data.endValue)
                 // 在picker滚动未停止前点确定，会使startValue数组各项归零，发生错误，这里判断并重新初始化
                 // 微信新增了picker滚动的回调函数，已进行兼容
+                // 检查并重新初始化时间选择器的数据，如果起始或结束值中零的数目超过配置的列对应的阈值
                 if (this.data.startValue && this.data.endValue) {
+                    // 初始化计数器，用于统计startValue和endValue中零的个数
                     let s = 0, e = 0;
+                    // 获取配置信息
                     let conf = this.data.config;
 
+                    // 遍历startValue，统计其中零的个数
                     this.data.startValue.map(val => {
                         if (val == 0) {
                             s++
                         }
                     })
+                    // 遍历endValue，统计其中零的个数
                     this.data.endValue.map(val => {
                         if (val == 0) {
                             e++;
                         }
                     });
+                    // 临时对象，用于根据配置的列名获取阈值
                     let tmp = {
                         hour: 4,
                         minute: 5,
                         second: 6
                     }
+                    // 根据配置的列名获取对应的阈值
                     let n = tmp[conf.column];
-                    console.log(s, e, n)
+                    // 打印起始值中零的个数、结束值中零的个数和对应列的阈值
+                    console.log("打印起始值中零的个数、结束值中零的个数和对应列的阈值",s, e, n)
+                    // 如果起始值或结束值中零的个数大于等于阈值，则重新初始化时间选择器
                     if (s >= n || e >= n) {
+                        console.log("重新初始化时间选择器");
                         this.initPick(this.data.config);
+                        // 更新数据，包括起始值和结束值
                         this.setData({
+
                             startValue: this.data.startValue,
                             endValue: this.data.endValue,
                         });
                     }
                 }
+                console.log("timepicker show  observer this.data.startValue:", this.data.startValue ,
+                    this.data.config,
+                    this.data.time_picker_title)
 
-                console.log("timepicker show  observer this.data.startValue:", this.data.startValue ,this.data.config, this.data.time_picker_title)
-                this.readConfig();
-                this.initPick(this.data.config || null);
+                this.setData({
+
+                })
                 // this.data.ready()
             }
         },
@@ -96,7 +116,7 @@ Component({
         // pickerShow:true
         // limitStartTime: new Date().getTime()-1000*60*60*24*30,
         // limitEndTime: new Date().getTime(),
-        // yearStart:2000,
+        // yearStart:2050,
         // yearEnd:2100
     },
     detached: function () {
@@ -489,7 +509,7 @@ Component({
                     dayIdx = idx;
                 }
             });
-            console.log("setPickerDateArr", DayList)
+            // console.log("setPickerDateArr", DayList)
             if (type == "start") {
                 this.setData({startDayList: DayList});
             } else if (type == "end") {
@@ -537,11 +557,17 @@ Component({
             this.setData({
                 startYearList: this.data.YearList,
                 startMonthList: this.data.MonthList,
-                // startDayList: this.data.DayList,
+                startDayList: this.data.DayList,
                 startHourList: this.data.HourList,
                 startMinuteList: this.data.MinuteList,
                 startSecondList: this.data.SecondList,
                 startValue: [
+                    // 10,
+                    // 3,
+                    // 8,
+                    // 5,
+                    // 6,
+                    // 7,
                     pickerDateArr.yearIdx,
                     pickerDateArr.monthIdx,
                     pickerDateArr.dayIdx,
@@ -563,7 +589,8 @@ Component({
                     this.data.SecondList[pickerDateArr.secondIdx]
             });
 
-            console.log("setStartDate  end  this.data.startValue :", this.data.startValue ,"this.data.startYearList ",this.data.startYearList)
+            console.log("setStartDate  end  this.data.startValue :",
+                this.data.startValue ,"startPickTime ",this.data.startPickTime)
         },
         setEndDate: function (year, month, day, hour, minute, second) {
             let pickerDateArr = this.setPickerDateArr(

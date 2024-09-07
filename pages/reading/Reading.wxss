@@ -1,0 +1,37 @@
+.book-item{
+    width: 100%;
+    height: 60rpx;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*padding: 0 20rpx;*/
+    /*border-bottom: 1rpx solid #ccc;*/
+    /*box-sizing: border-box;*/
+    /*overflow: hidden;*/
+    /*position: relative;*/
+    /*z-index: 1;*/
+    /*box-shadow: 0 1rpx 2rpx rgba(0,0,0,.1);*/
+    /*transition: all .3s;*/
+    /*transform: translateY(0);*/
+    /*opacity: 1;*/
+    /*cursor: pointer;*/
+    /*margin-bottom: 20rpx;*/
+    /*border-radius: 10rpx;*/
+}
+
+.active_book_item{
+    height: 90rpx;
+    align-items: center;
+    display: flex;
+    margin:  0 20rpx;
+
+}
+.inactive_book_item{
+    height: 90rpx;
+    align-items: center;
+    display: flex;
+
+    margin:  0 20rpx;
+    opacity: 0.6;
+}

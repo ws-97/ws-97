@@ -253,7 +253,7 @@ Page({
         console.log("输入监听器：", params, "param.detail:", params.detail,
             "param.detail.detail:", params.detail.detail,
             "param.currentTarget.detail:", params.currentTarget.detail,
-            "searchResultList:" + this.data.searchResultList,
+            "searchResultList:", this.data.searchResultList,
             "param.currentTarget:", params.currentTarget);
         if (params.detail.detail === "") {
             this.setData({
@@ -262,7 +262,7 @@ Page({
         } else {
             var tempList = [];
             for (var index in this.data.searchResultList) {
-                console.log("item:", this.data.searchResultList[index].title)
+                console.log("item:", this.data.searchResultList[index])
 
                 if (this.data.searchResultList[index].title.includes(params.detail.detail)) {
                     tempList.push(this.data.searchResultList[index])

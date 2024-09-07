@@ -8,7 +8,8 @@
         "pages/thesaurus/thesaurusReview/ThesaurusReviewPage",
         "pages/upcoming/upcoming",
         "pages/memorandum/memorandumpage",
-        "pages/question/questionDetail/questionDetailPage"
+        "pages/question/questionDetail/questionDetailPage",
+        "pages/reading/Reading"
     ],
     "window": {
         "navigationBarTitleText": "小助手",
@@ -34,6 +35,12 @@
                 "selectedIconPath": "images/tabbar_homed.png",
                 "iconPath": "images/tabbar_home.png",
                 "text": "待办"
+            },
+            {
+                "pagePath": "pages/reading/Reading",
+                "selectedIconPath": "images/tabbar_homed.png",
+                "iconPath": "images/tabbar_home.png",
+                "text": "阅读"
             },
             {
                 "pagePath": "pages/my/my",

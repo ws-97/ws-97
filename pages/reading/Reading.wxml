@@ -1,0 +1,13 @@
+阅读首页
+
+<button bindtap="importBook">导入书籍</button>
+
+
+<view  wx:for="{{bookList}}" wx:key='*this'>
+    <view   bindtap="openBook" data-book="{{item}}" >
+        <text class="{{item.isLocalExist?'active_book_item':'inactive_book_item'}}" >{{item.cl_book_name}}</text>
+
+        <view style="width: 100%; height: 1px; background-color: #ccc;"></view>
+
+    </view>
+</view>

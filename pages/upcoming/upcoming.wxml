@@ -4,7 +4,7 @@
 
 <TabBar tabList="{{tabList}}" bindtabsItemChange="tabsItemChange"></TabBar>
 
-<searchBar bind:clear='onClear'   bind:onCancel='cancelSearch'  bind:onChange='change' background="#000000"></searchBar>
+<searchBar bind:clear='onClear' placeholder="输入文字搜索"   bind:onCancel='cancelSearch'  bind:onChange='change' background="#000000"></searchBar>
 <!-- <text class='tab_name' wx:for="{{navbar}}" data-tab_index="{{index}}" data-tab_name="{{item}}" bindtap="changeNavBar">{{item}}</text> -->
 <View class="content_view">
 <!-- //待办-创建词单页 -->

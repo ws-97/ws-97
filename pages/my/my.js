@@ -28,7 +28,7 @@ Page({
         console.log("进入复习页面", this.data.queryParam)
         wx.navigateTo({
             url: '../thesaurus/thesaurusReview'+
-            '/ThesaurusReviewPage?thesaurusName=2024/4/20/11/12/4',
+            '/ThesaurusReviewPage?thesaurusName=2024/3/30/10/20/45',
 
         })
     },
