@@ -1,4 +1,7 @@
 // pages/thesaurus/thesaurus.js
+const localDB = require('../utils/localDB.js')
+const _ = localDB.command
+localDB.init() // 初始化
 Page({
 
     //定义页面变量
@@ -64,6 +67,21 @@ Page({
                 console.log("getAccessToken " + res.data.access_token)
                 console.log(res.data)
             }
+        })
+    },
+
+    cleanLocalDatabase:function (){
+
+        localDB.removeCollection("TableBook")
+
+
+    },
+
+
+    openWebvew:function (){
+        wx.navigateTo({
+            // url: '/pages/reading/pdf_reading/PDFReading?fileUrl='+'https://www.pwithe.com/Public/Upload/download/20170211/589ebf8e5bb13.pdf'
+            url: '/pages/reading/pdf_reading/PDFReading?bookId=1725712035092'
         })
     },
 

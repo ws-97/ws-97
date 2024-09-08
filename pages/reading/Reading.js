@@ -6,13 +6,15 @@ if (!bookTable)
     bookTable = localDB.createCollection('TableBook') // 不存在则先创建
 else
     bookTable = localDB.collection('TableBook')
+
 Page(
     {
         data: {
 
-            bookList: []
+            bookList: [],
+            downloadTask: null
         },
-        onShow: function (options) {
+        onShow() {
             console.log("本地数据库书表", bookTable, "本地数据库集合数量：", bookTable.get().length)
 
             if (bookTable.get().length > 0) {
@@ -178,10 +180,25 @@ Page(
 
         openBook: function (e) {
 
+
             var that = this
             var bookBean = e.currentTarget.dataset.book
-            console.log("点击了一本书：", e, "输的路径为：", e.currentTarget.dataset.book.cl_save_path)
+            console.log("点击了一本书：", e, "输的路径为：",
+                e.currentTarget.dataset.book.cl_save_path,
+                "本地是否存在：：", bookBean.isLocalExist,
+                "this.data.downloadTask:",this.data.downloadTask)
+            if (this.data.downloadTask != null) {
+                wx.showToast({title: "正在下载中。。。"})
+                return
+            }
+
+
             if (bookBean.isLocalExist) {
+
+                // wx.navigateTo({
+                //     // url: '/pages/reading/pdf_reading/PDFReading?fileUrl='+'https://www.pwithe.com/Public/Upload/download/20170211/589ebf8e5bb13.pdf'
+                //     url: '/pages/reading/pdf_reading/PDFReading?bookId='+bookBean.cl_book_id+"&bookPath="+bookBean.cl_save_path
+                // })
                 wx.openDocument({
                     filePath: bookBean.cl_save_path,
                     showMenu: true,
@@ -193,28 +210,61 @@ Page(
                     }
                 })
             } else {
-                wx.downloadFile({
+                that.data.downloadTask = wx.downloadFile({
                     url: getApp().globalData.netServerAddrees + '/book/download?bookId=' + bookBean.cl_book_id,
                     success: function (res) {
                         console.log("下载文件成功", res)
-                        // bookBean.cl_save_path = res.tempFilePath;
-                        // bookBean.isLocalExist=true
-                        bookTable.updateBookSingle({
-                            cl_book_id: bookBean.cl_book_id,
-                            cl_save_path: res.tempFilePath,
-                            isLocalExist: true
-                        })
-                        // that.setData({bookBean})
-                        // that.openBook(e)
-                        wx.openDocument({
-                            filePath: res.tempFilePath,
-                            showMenu: true,
-                            success: function (res) {
-                                console.log(res)
+                        if (res.statusCode === 200) {
+                            // bookBean.cl_save_path = res.tempFilePath;
+                            // bookBean.isLocalExist=true
+                            bookTable.updateBookSingle({
+                                cl_book_id: bookBean.cl_book_id,
+                                cl_save_path: res.tempFilePath,
+                                isLocalExist: true
+                            })
+                            // that.setData({bookBean})
+                            // that.openBook(e)
+                            wx.openDocument({
+                                filePath: res.tempFilePath,
+                                showMenu: true,
+                                success: function (res) {
+                                    console.log(res)
+                                }
+                            })
+                        } else {
+                            wx.showToast({
+                                title: '下载失败',
+                                icon: 'none',
+                            })
+                        }
+                        that.setData(
+                            {
+                                downloadTask: null
                             }
-                        })
+                        )
+
+                    },
+                    fail: function (res) {
+                        console.log("下载文件失败", res)
+                        that.setData(
+                            {
+                                downloadTask: null
+                            }
+                        )
                     }
                 })
+                that.data.downloadTask.onProgressUpdate(res => {
+                    console.log('下载进度', res.progress)
+                    console.log('已经下载的数据长度', res.totalBytesWritten)
+                    console.log('预期需要下载的数据总长度', res.totalBytesExpectedToWrite)
+
+                    //无效
+                    that.setData({
+                        downloadProgress: res.progress
+                    })
+
+                })
+                console.log("开始下载",that.data.downloadTask)
             }
             // console.log("点击了一本书：", e, "输的路径为：", e.currentTarget.dataset.book.cl_save_path)
             // wx.openDocument({

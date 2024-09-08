@@ -3,7 +3,8 @@
 
 <view>{{msg}}</view>
 
-
+<button id="asdad" bindtap="cleanLocalDatabase">删除本地数据</button>
+<button id="asdad" bindtap="openWebvew">打开自定义pdfwebview</button>
 <view wx:for="{{array}}">学生{{index}}:{{item}}</view>
 <button id="asdad" bindtap="getRecieveTime">可接受次数{{receiveTimes}}</button>
 <text>这是editor</text>
@@ -25,6 +26,7 @@
 <button id="asdad" bindtap="getAccessToken">获取token1</button>
 <button id="asdad" bindtap="getOpenId">获取OPenID2</button>
 <button id="asdad" bindtap="sendMessage1">发送消息3</button>
+
 
 <view class="title">1.视图容器view的简单应用</view>
 <view class="demo-box">

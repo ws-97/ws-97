@@ -9,7 +9,8 @@
         "pages/upcoming/upcoming",
         "pages/memorandum/memorandumpage",
         "pages/question/questionDetail/questionDetailPage",
-        "pages/reading/Reading"
+        "pages/reading/Reading",
+        "pages/reading/pdf_reading/PDFReading"
     ],
     "window": {
         "navigationBarTitleText": "小助手",
@@ -23,6 +24,7 @@
     "tabBar": {
         "backgroundColor": "@tabBgColor",
         "selectedColor": "#328eeb",
+
         "list": [
             {
                 "pagePath": "pages/home/home",
